@@ -16,6 +16,7 @@ class UserController {
 
     const user = repository.create({ name, email, password });
     await repository.save(user);
+    delete user.password;
 
     return res.json(user);
   }

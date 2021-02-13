@@ -4,10 +4,13 @@ import {
   PrimaryGeneratedColumn,
   BeforeInsert,
   BeforeUpdate,
+  OneToMany,
+  JoinColumn,
 } from "typeorm";
 import bcrypt from "bcryptjs";
+import Recipe from "./Recipe";
 
-@Entity("users")
+@Entity("user")
 export default class User {
   @PrimaryGeneratedColumn("uuid")
   id: number;
@@ -20,6 +23,12 @@ export default class User {
 
   @Column()
   password: string;
+
+  @OneToMany(() => Recipe, (recipe) => recipe.user, {
+    cascade: ["insert", "update"],
+  })
+  @JoinColumn({ name: "userId" })
+  recipes: Recipe[];
 
   @BeforeInsert()
   @BeforeUpdate()
