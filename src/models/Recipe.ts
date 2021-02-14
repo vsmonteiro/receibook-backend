@@ -27,7 +27,7 @@ export default class Recipe {
   @Column()
   externalLink: string;
 
-  @ManyToMany(() => Ingredient)
+  @ManyToMany(() => Ingredient, { onDelete: "CASCADE" })
   @JoinTable({ name: "recipe_ingredients" })
   ingredients: Ingredient[];
 

@@ -12,5 +12,7 @@ routes.post("/auth", AuthController.authenticate);
 
 routes.post("/recipe/create", authMiddleware, RecipeController.store);
 routes.get("/recipe/list", authMiddleware, RecipeController.list);
+routes.put("/recipe/update", authMiddleware, RecipeController.update);
+routes.delete("/recipe/delete/:id", authMiddleware, RecipeController.delete);
 
 export default routes;
